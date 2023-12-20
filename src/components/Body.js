@@ -3,81 +3,78 @@ import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer'; /* Shimmer component to display before page load */
 import { GET_RES_API_URL } from '../config'; /* url to get Restaurant data */
 
-const filterData = (searchText, restaurants) => {
-  return restaurants.filter(restaurant => restaurant.data.name.toLowerCase().includes(searchText.toLowerCase()));
+const filterData = (searchText, allRestaurants) => {
+  return allRestaurants.filter(restaurant => restaurant.name.toLowerCase().includes(searchText.toLowerCase()));
 }
 
+
 const Body = () => {
-  const [searchText, setSearchText] = useState();
+  const [searchText, setSearchText] = useState('');
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
 
-  useEffect(()=>{
-    console.log("useEffect")
+  useEffect(() => {
+    console.log("useEffect");
     getRestaurants();
-  },[]);
+  }, []);
 
   const getRestaurants = async () => {
     try {
       const response = await fetch(GET_RES_API_URL);
       const res_data = await response.json();
-      setAllRestaurants(res_data?.data?.cards[2]?.data?.data?.cards);
-      setFilteredRestaurants(res_data?.data?.cards[2]?.data?.data?.cards);
+      const restaurantsData = res_data.data.cards[5].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
+      setAllRestaurants(restaurantsData);
+      setFilteredRestaurants(restaurantsData);
+      console.log(allRestaurants,"filteredRestaurants");
     } catch (error) {
       console.log(error);
     }
-    
   };
 
-  const searchData = (searchText, restaurants ) => ()=> {  
-    if(searchText !== '') {
-      const data = filterData(searchText,restaurants);
-      setFilteredRestaurants(data); 
-      setErrorMsg('');
-    if (data.length === 0) {
-      setErrorMsg('No matches found ');
-    }
-  } else {
-      if(errorMsg) setErrorMsg('');
-      console.log(allRestaurants);
-      setAllRestaurants(allRestaurants);
-    }
+  const searchData = (searchText, restaurants) => {
+    const data = filterData(searchText, allRestaurants);
+    setFilteredRestaurants(data);
+    setErrorMsg(data.length === 0 ? 'No matches found' : '');
+  };
+
+  console.log("render");
+
+  if (!allRestaurants || allRestaurants.length === 0) {
+    console.log("early return");
+    return <Shimmer />;
   }
 
-  console.log("render"); 
-
-// Don't render component (Early return)
-if (!allRestaurants) {
-  console.log("ealr return")
-  return null;
-}
-return (
-    <div className= "container">
-      <div className="search-container"> 
-        <input type="text" placeholder=" Search for restaurant" value={searchText}
-          className="search-input" key="input-text" onChange = {(e) => setSearchText(e.target.value)}/>
-        <button className="search-btn" 
-          onClick={searchData(searchText, allRestaurants)}> Search </button>
+  return (
+    <div className="container">
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder=" Search for restaurant"
+          value={searchText}
+          className="search-input"
+          key="input-text"
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button
+          className="search-btn"
+          onClick={() => searchData(searchText, allRestaurants)}
+        >
+          Search
+        </button>
       </div>
-    { errorMsg && 
-      <div className="error-container" id="error">
-        <span className="error-msg" id="error-msg">{errorMsg}</span>
-      </div> 
-    }
-    
-    { allRestaurants?.length === 0 ? (<Shimmer />) : 
-    <div className="restaurant-container">
-      {filteredRestaurants.map((restaurant) => {
-        return <RestaurantCard {...restaurant.data} key={restaurant.data.id} />;
-      })}
+      {errorMsg && (
+        <div className="error-container" id="error">
+          <span className="error-msg" id="error-msg">{errorMsg}</span>
+        </div>
+      )}
+      <div className="restaurant-container">
+        {filteredRestaurants.map((restaurant, index) => (
+          <RestaurantCard {...restaurant} key={index} />
+        ))}
+      </div>
     </div>
-    }
-    
-  </div>
   );
-
-    
 };
 
 export default Body;

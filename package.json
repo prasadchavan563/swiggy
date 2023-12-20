@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Learn-React-With-Harshi/chapter-05-lets-get-hooked.git"
+    "url": "https://github.com/prasadchavan563/namaste_react_akshaysaini.git"
   },
   "author": "Harshitha SV",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Learn-React-With-Harshi/chapter-06-exploring-the-world/issues"
+    "url": "https://github.com/prasadchavan563/namaste_react_akshaysaini/issues"
   },
-  "homepage": "https://github.com/Learn-React-With-Harshi/chapter-06-exploring-the-world#readme",
+  "homepage": "https://github.com/prasadchavan563/namaste_react_akshaysaini#readme",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

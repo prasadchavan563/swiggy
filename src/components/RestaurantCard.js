@@ -1,11 +1,11 @@
 import {IMG_CDN} from "../config";
 import { AiFillStar } from "react-icons/ai";
 
-export const RestaurantCard = ({name, cuisines, cloudinaryImageId, avgRating, slaString, costForTwoString}) => {
+export const RestaurantCard = ({name, cuisines, cloudinaryImageId, avgRating, sla, costForTwo}) => {
   const buttonStyle = {
     backgroundColor: avgRating == "--" ? "#fff" : parseFloat(avgRating) < 4.0 ? "#db7c38":"#48c479",
     color : isNaN(avgRating)? "#535665" : "#fff"
-  }
+  } 
   
   return (
     <div className="card">
@@ -18,9 +18,9 @@ export const RestaurantCard = ({name, cuisines, cloudinaryImageId, avgRating, sl
             <AiFillStar /><span>{avgRating}</span>
           </div>
           <div>•</div>
-          <div>{slaString}</div>
+          <div>{sla.slaString}</div>
           <div>•</div>
-          <div>{costForTwoString}</div>
+          <div>{costForTwo}</div>
         </div>
       </div>
     </div>
