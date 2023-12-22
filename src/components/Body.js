@@ -2,6 +2,7 @@ import { RestaurantCard } from './RestaurantCard'; /* Import using Named Import 
 import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer'; /* Shimmer component to display before page load */
 import { GET_RES_API_URL } from '../config'; /* url to get Restaurant data */
+import { Link } from 'react-router-dom';
 
 const filterData = (searchText, allRestaurants) => {
   return allRestaurants.filter(restaurant => restaurant.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -69,8 +70,8 @@ const Body = () => {
         </div>
       )}
       <div className="restaurant-container">
-        {filteredRestaurants.map((restaurant, index) => (
-          <RestaurantCard {...restaurant} key={index} />
+        {filteredRestaurants.map((restaurant) => (
+          <Link key={restaurant.id} to={"/restaurant/"+restaurant.id}><RestaurantCard {...restaurant}  /></Link>
         ))}
       </div>
     </div>

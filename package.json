@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/prasadchavan563/namaste_react_akshaysaini.git"
   },
-  "author": "Harshitha SV",
+  "author": "Prasad",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/prasadchavan563/namaste_react_akshaysaini/issues"
@@ -20,7 +20,8 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1"
+    "react-icons": "^4.7.1",
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

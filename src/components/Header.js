@@ -4,10 +4,12 @@ import loggedIn from '../../assets/images/loggedin.png';
 import loggedOut from '../../assets/images/loggedout.png';
 import home from '../../assets/images/home.png';
 import {useState} from 'react';
+import { Link } from 'react-router-dom';
+
 
 export const ImgComponent = ({item, itemname}) => {
   return(
-    <a href="/"> <img className={itemname} alt={itemname} src= {item} /> </a>
+    <Link to={"/"}> <img className={itemname} alt={itemname} src= {item} /> </Link>
     )
 }
 
@@ -22,7 +24,9 @@ export const NavComponent = () => {
   return (
     <div className="nav-items">
     <ul>
-      <li> <ImgComponent item={home} itemname={"home"} /> </li>
+      <li><Link to={"/"} ><ImgComponent item={home} itemname={"home"} /> </Link> </li>
+      <li><Link to={"/about"}>About Us</Link></li>
+      <li><Link to={"/contact"}>Contact Us</Link></li>
       <li> <ImgComponent item={cart} itemname={"cart"}/> </li>
       <li> <img src={isLoggedIn ? loggedIn : loggedOut } className={isLoggedIn?  "loggedIn" : "loggedOut" } 
         alt ={isLoggedIn?  "loggedIn" : "loggedOut" } 
