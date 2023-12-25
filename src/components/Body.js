@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer'; /* Shimmer component to display before page load */
 import { GET_RES_API_URL } from '../config'; /* url to get Restaurant data */
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../Utils/useOnlineStatus';
 
 const filterData = (searchText, allRestaurants) => {
   return allRestaurants.filter(restaurant => restaurant.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -40,6 +41,17 @@ const Body = () => {
   };
 
   console.log("render");
+
+
+  const onlineStatus=useOnlineStatus()
+
+  console.log(onlineStatus,"onlineStatus");
+
+  if(onlineStatus===false){
+    console.log("inside if condition");
+    return <h1 className='onlineStatus'>Looks like you're offline!! Please check your Internet Connection</h1>
+  }
+
 
   if (!allRestaurants || allRestaurants.length === 0) {
     console.log("early return");

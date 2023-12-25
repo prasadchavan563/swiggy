@@ -21,7 +21,7 @@ body,html {
 }
 
 .header {
-  position: fixed;
+  /* position:absolute; */
   left: 0;
   top: 0;
   width: 100%;
@@ -171,13 +171,13 @@ body,html {
   background: #ffc300;
   color: #001d3d;
   text-align: center;
+  position: fixed;
+  bottom: 0;
 }
 .footer-text {
   text-align: center;
 }
-.red-heart {
-  color : #c70039;
-}
+
 
 
 /*Shimmer CSS */
@@ -268,3 +268,4 @@ body,html {
   border: 1px solid black;
   margin-bottom: 5px;
 }
+

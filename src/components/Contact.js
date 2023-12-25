@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import useOnlineStatus from '../Utils/useOnlineStatus';
 
 const Contact = () => {
 
@@ -12,6 +13,14 @@ const Contact = () => {
       console.log("unmount useEffect");
     }
   },[])
+  const onlineStatus=useOnlineStatus()
+
+  console.log(onlineStatus,"onlineStatus");
+
+  if(onlineStatus===false){
+    console.log("inside if condition");
+    return <h1 className='onlineStatus'>Looks like you're offline!! Please check your Internet Connection</h1>
+  }
 
   return (
     <div className='menu'>

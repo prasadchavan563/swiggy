@@ -12,3 +12,19 @@ Check out [Chapter-06 Live](https://learn-react-with-harshi-chapter-06.netlify.a
 
 
 If you are interested in other chapters of this series, please browse through the [my repositories](https://github.com/orgs/Learn-React-With-Harshi/repositories)
+
+
+
+
+collect all the files and make it into one application ==>bundling
+
+one js file for 1000 of components then size of js file increaed a lot
+when js file is too large then its lot of time to load Home Page
+
+when you are building a large scale application then you have to break down in smaller pieces.
+
+solution is we have to make smaller bundes of this file. This process is known as chunking or code splitting or dynamic bundling or lazy loading or on demand loading.
+makemytrip eg
+
+lazy loading
+we will not load everything, but we will load lazy loading when require
