@@ -25,7 +25,7 @@ const Body = () => {
     try {
       const response = await fetch(GET_RES_API_URL);
       const res_data = await response.json();
-      const restaurantsData = res_data.data.cards[5].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
+      const restaurantsData = res_data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
       setAllRestaurants(restaurantsData);
       setFilteredRestaurants(restaurantsData);
       console.log(allRestaurants,"filteredRestaurants");
@@ -59,18 +59,18 @@ const Body = () => {
   }
 
   return (
-    <div className="container">
-      <div className="search-container">
+    <div className="">
+      <div className="m-4 p-4 justify-center">
         <input
           type="text"
           placeholder=" Search for restaurant"
           value={searchText}
-          className="search-input"
+          className="border-s-orange-50 rounded-sm"
           key="input-text"
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="search-btn"
+          className="px-4 py-0.5 m-2 bg-green-400 rounded-lg"
           onClick={() => searchData(searchText, allRestaurants)}
         >
           Search
@@ -81,7 +81,7 @@ const Body = () => {
           <span className="error-msg" id="error-msg">{errorMsg}</span>
         </div>
       )}
-      <div className="restaurant-container">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.id} to={"/restaurant/"+restaurant.id}><RestaurantCard {...restaurant}  /></Link>
         ))}
