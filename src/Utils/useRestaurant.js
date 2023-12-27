@@ -15,12 +15,14 @@ const useRestaurant=(id)=>{
         try {
             const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5642452&lng=73.7768511&restaurantId=${id}`);
             const json = await data.json();
-            console.log(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((data)=>data?.card?.info),"json");
             const restaurantInfo = json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((data)=>data?.card?.info);
             setResInfo(restaurantInfo);
+            const restaurantInfoIfNotIn=json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0]?.itemCards?.map((data)=>data?.card?.info)
+            if(!restaurantInfo){
+                setResInfo(restaurantInfoIfNotIn);
+            }
         } catch (error) {
             console.error("Error fetching data:", error);
-            // Handle errors if fetch fails
         }
     };
     return resInfo
