@@ -60,18 +60,18 @@ const Body = () => {
   }
 
   return (
-    <div className="container">
-      <div className="search-container">
+    <div className="">
+      <div className="m-4 p-4 justify-center">
         <input
           type="text"
           placeholder=" Search for restaurant"
           value={searchText}
-          className="search-input"
+          className="border-s-orange-50 rounded-sm"
           key="input-text"
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="search-btn"
+          className="px-4 py-0.5 m-2 bg-green-400 rounded-lg"
           onClick={() => searchData(searchText, allRestaurants)}
         >
           Search
@@ -82,7 +82,7 @@ const Body = () => {
           <span className="error-msg" id="error-msg">{errorMsg}</span>
         </div>
       )}
-      <div className="restaurant-container">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.id} to={"/restaurant/"+restaurant.id}><RestaurantCard {...restaurant}  /></Link>
         ))}
