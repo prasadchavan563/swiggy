@@ -25,7 +25,8 @@ const Body = () => {
     try {
       const response = await fetch(GET_RES_API_URL);
       const res_data = await response.json();
-      const restaurantsData = res_data.data.cards[5].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
+      console.log(res_data,"res_data");
+      const restaurantsData = res_data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
       setAllRestaurants(restaurantsData);
       setFilteredRestaurants(restaurantsData);
       console.log(allRestaurants,"filteredRestaurants");
