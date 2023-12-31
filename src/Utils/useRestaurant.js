@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 
-const useRestaurant=(id)=>{
+const useRestaurant = (id) => {
 
     const [resInfo, setResInfo] = useState(null);
 
@@ -11,18 +11,46 @@ const useRestaurant=(id)=>{
         }
     }, [resInfo]);
 
+
+
     const fetchMenu = async () => {
         try {
             const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5642452&lng=73.7768511&restaurantId=${id}`);
             const json = await data.json();
-            console.log(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((data)=>data?.card?.info),"json");
-            const restaurantInfo = json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((data)=>data?.card?.info);
+
+            let restaurantInfo = json?.data?.cards?.map((card) => {
+                const nestedCards = card?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+                if (Array.isArray(nestedCards)) {
+                    return nestedCards.flatMap((nestedCard) => {
+                        const itemCards = nestedCard?.card?.card?.itemCards;
+
+                        if (Array.isArray(itemCards)) {
+                            return itemCards
+                                .map((data) => data?.card?.info)
+                                .filter((info) => info);
+                        }
+
+                        return [];
+                    });
+                }
+
+                return [];
+            }).flat();
+
+            if (restaurantInfo.length === 0) {
+                const restaurantInfoIfNotIn = json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0]?.itemCards?.map((data) => data?.card?.info);
+                restaurantInfo = restaurantInfoIfNotIn || [];
+            }
+
             setResInfo(restaurantInfo);
         } catch (error) {
             console.error("Error fetching data:", error);
             // Handle errors if fetch fails
         }
     };
+
+
     return resInfo
 
 }
