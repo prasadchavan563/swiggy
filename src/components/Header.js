@@ -3,9 +3,10 @@ import cart from '../../assets/images/cart.png';
 import loggedIn from '../../assets/images/loggedin.png';
 import loggedOut from '../../assets/images/loggedout.png';
 import home from '../../assets/images/home.png';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../Utils/useOnlineStatus';
+import UserContext from '../Utils/UsrContext';
 
 
 export const ImgComponent = ({ item, itemname }) => {
@@ -22,10 +23,12 @@ export const Title = () => {
 
 export const NavComponent = () => {
 
+  const {loggedInUser}=useContext(UserContext)
+
   const onlineStatus = useOnlineStatus();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <div className='flex justify-between bg-pink-300 shadow-xl m-2 sm:bg-yellow-300 lg:bg-green-300'>
+    <div className='flex justify-between bg-pink-300 shadow-xl m-2 sm:bg-yellow-300 lg:bg-cyan-300'>
       <div>
         <Title />
       </div>
@@ -41,6 +44,7 @@ export const NavComponent = () => {
             alt={isLoggedIn ? "loggedIn" : "loggedOut"}
             onClick={() => { setIsLoggedIn(!isLoggedIn); }} />
           </li>
+          <li>{loggedInUser}</li>
         </ul>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React,{lazy} from "react";
+import React,{lazy, useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter , Outlet, RouterProvider} from "react-router-dom";
 
@@ -10,15 +10,31 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Restaurant from "./components/Restaurant";
 import { Suspense } from "react";
+import UserContext from "./Utils/UsrContext";
 
 const Grocery=lazy(()=>import("./components/Grocery"))
 
 const AppLayout = () => {
+
+  const [userName,setUserName]=useState()
+
+  useEffect(()=>{
+    //make an api call
+    const data={
+      name:"Prasad Chavan",
+      names:"prasad"
+    }
+    setUserName(data.name)
+  },[])
+
   return (
     <>
+      <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
       <MainHeader.Header />
       <Outlet />
       <MainFooter />
+      </UserContext.Provider>  
+      {/* Now all component should access UserContext */}
     </>
   );
 };
