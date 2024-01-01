@@ -1,8 +1,8 @@
-import React,{lazy, useEffect, useState} from "react";
+import React, { lazy, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter , Outlet, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import * as MainHeader from "./components/Header"; /* Imported using import * as namespace  */ 
+import * as MainHeader from "./components/Header"; /* Imported using import * as namespace  */
 import Body from "./components/Body"; /* Imported using default export */
 import { Footer as MainFooter } from "./components/Footer"; /* Imported using Named Import Map */
 import About from "./components/About";
@@ -10,30 +10,30 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Restaurant from "./components/Restaurant";
 import { Suspense } from "react";
-import UserContext from "./Utils/UsrContext";
+import ClientContext from "./Utils/ClientContext";
 
-const Grocery=lazy(()=>import("./components/Grocery"))
+
+const Grocery = lazy(() => import("./components/Grocery"))
 
 const AppLayout = () => {
 
-  const [userName,setUserName]=useState()
+  const [username, setUsername] = useState()
 
-  useEffect(()=>{
-    //make an api call
-    const data={
-      name:"Prasad Chavan",
-      names:"prasad"
+  useEffect(() => {
+    //make api call for username
+    data = {
+      name: "Prasad Chavan"
     }
-    setUserName(data.name)
-  },[])
+    setUsername(data.name)
+  })
 
   return (
     <>
-      <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
-      <MainHeader.Header />
-      <Outlet />
-      <MainFooter />
-      </UserContext.Provider>  
+      <ClientContext.Provider value={{loggedInUser:username,setUsername}}>
+        <MainHeader.Header />
+        <Outlet />
+        <MainFooter />
+      </ClientContext.Provider>
       {/* Now all component should access UserContext */}
     </>
   );
@@ -43,31 +43,31 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    children : [
+    children: [
       {
-        path : "/",
-        element : <Body />
+        path: "/",
+        element: <Body />
       },
       {
-        path : "/about",
-        element : <About />
+        path: "/about",
+        element: <About />
       },
       {
-        path : "/contact",
-        element : <Contact />
+        path: "/contact",
+        element: <Contact />
       },
       {
-        path : "/restaurant/:id",
-        element : <Restaurant />
+        path: "/restaurant/:id",
+        element: <Restaurant />
       },
       {
-        path : "/grocery",
-        element : <Suspense fallback={<h1>Loading ...</h1>}><Grocery /></Suspense> //Suspense is used for till the grocery page load show fallback
+        path: "/grocery",
+        element: <Suspense fallback={<h1>Loading ...</h1>}><Grocery /></Suspense> //Suspense is used for till the grocery page load show fallback
       }
     ],
-    errorElement : <Error />
+    errorElement: <Error />
   },
-  
+
 ])
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

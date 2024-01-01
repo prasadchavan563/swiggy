@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import useOnlineStatus from '../Utils/useOnlineStatus';
 import { WithRestaurantLable } from './RestaurantCard';
 import Restaurant from './Restaurant';
-// import UserContext from '../Utils/UsrContext';
-import UserContext from '../Utils/UsrContext';
+import ClientContext from '../Utils/ClientContext';
+
 
 const filterData = (searchText, allRestaurants) => {
   return allRestaurants.filter(restaurant => restaurant.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -19,8 +19,7 @@ const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
-  const {setUserName,loggedInUser}=useContext(UserContext);
-  console.log("loggedInUser",setUserName,loggedInUser);
+
 
   useEffect(() => {
     console.log("useEffect");
@@ -66,6 +65,8 @@ const Body = () => {
     return <h1 className='onlineStatus'>Looks like you're offline!! Please check your Internet Connection</h1>
   }
 
+  const {loggedInUser,setUsername}=useContext(ClientContext)
+  console.log("loggedInUser",loggedInUser,setUsername);
 
   if (!allRestaurants || allRestaurants.length === 0) {
     console.log("early return");
@@ -89,8 +90,13 @@ const Body = () => {
         >
           Search
         </button>
+        <div>
         <span className='ml-10 mr-5'>Set UserName :</span>
-        <input type='text' className='border border-none p-2  rounded-lg' value={loggedInUser} onChange={(e)=>setUserName(e.target.value)}></input>
+        <input type='text' className='border border-none p-2  rounded-lg'
+        value={loggedInUser}
+        onChange={(e)=>setUsername(e.target.value)}
+        />
+        </div>
       </div>
       <div>
       

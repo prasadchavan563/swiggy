@@ -6,7 +6,7 @@ import home from '../../assets/images/home.png';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../Utils/useOnlineStatus';
-import UserContext from '../Utils/UsrContext';
+import ClientContext from '../Utils/ClientContext';
 
 
 export const ImgComponent = ({ item, itemname }) => {
@@ -23,8 +23,7 @@ export const Title = () => {
 
 export const NavComponent = () => {
 
-  const {loggedInUser}=useContext(UserContext)
-
+  const {loggedInUser}=useContext(ClientContext)
   const onlineStatus = useOnlineStatus();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
