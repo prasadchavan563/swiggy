@@ -4,6 +4,8 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurant from "../Utils/useRestaurant";
 import { IMG_CDN } from "../config";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Utils/cartSlice";
 
 
 const Restaurant = () => {
@@ -25,6 +27,13 @@ const Restaurant = () => {
         // Filter resInfo based on category
         const dataForCategory = resInfo.filter(info => info.category === category);
         console.log(dataForCategory, "dataForCategory");
+
+
+        const dispatch = useDispatch()
+        const handleAddItem = (dataForCategory) => {
+            dispatch(addItem(dataForCategory))
+            console.log("dataForCategory", dataForCategory);
+        }
 
         return (
             <div key={category}>
@@ -48,17 +57,23 @@ const Restaurant = () => {
                                 {dataForCategory.map((data, index) => (
                                     <div className="flex justify-between border-b-2" key={index}>
                                         <div className="my-3 w-9/12">
+                                        <p>{data.isVeg===1 ? "🟢" : "🔴"}</p>
                                             <p className="font-medium">{data.name}</p>
                                             <p className="font-medium mb-5">
                                                 {/* {data.price / 100}{" Rs"} */}
-                                                {data.price ? "₹ " + data.price / 100 : "₹ "+ data.defaultPrice / 100}
+                                                {data.price ? "₹ " + data.price / 100 : "₹ " + data.defaultPrice / 100}
                                             </p>
                                             <p className="font-thin from-neutral-200 mt-20">{data.description}</p>
 
                                         </div>
                                         <div className="w-3/12">
                                             <div className="absolute">
-                                                <button className="p-2 bg-white text-green-600 shadow-lg mt-10 mx-35 rounded-lg">Add+</button>
+                                                <button className="p-2 bg-white text-green-600 shadow-lg mt-10 mx-35 rounded-lg hover:bg-gray-200 hover:text-green-700 hover:shadow-md active:bg-blue-200 active:text-blue-700 active:shadow-md"
+                                                    // onClick={handleAddItem}>Add+</button>
+                                                    onClick={() => handleAddItem(data)}>Add+</button>
+                                                {/* onClick={handleAddItem(dataForCategory)}
+                                                onClick={()=>handleAddItem(dataForCategory)} this is calling a fn() right away
+                                                 */}
                                             </div>
                                             <img src={IMG_CDN + data.imageId} className=" p-4 my-10 rounded-2xl" />
 

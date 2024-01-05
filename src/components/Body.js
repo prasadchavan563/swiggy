@@ -31,13 +31,14 @@ const Body = () => {
     try {
       const response = await fetch(GET_RES_API_URL);
       const res_data = await response.json();
+      console.log(res_data,"res_data");
       const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5642452&lng=73.7768511&restaurantId=24420")
       const json = await data.json()
       console.log("jsondata@@@@@@@@@",json);
       console.log("seconddata",json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((data)=>data?.card?.info));
       console.log("thirdddata",json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card?.itemCards?.map((data)=>data?.card?.info));
       console.log(res_data,"res_data");
-      const restaurantsData = res_data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
+      const restaurantsData = res_data.data.cards[2].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
       setAllRestaurants(restaurantsData);
       setFilteredRestaurants(restaurantsData);
       console.log(allRestaurants,"filteredRestaurants");

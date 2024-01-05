@@ -3,11 +3,12 @@ import cart from '../../assets/images/cart.png';
 import loggedIn from '../../assets/images/loggedin.png';
 import loggedOut from '../../assets/images/loggedout.png';
 import home from '../../assets/images/home.png';
+import Cart from './Cart';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../Utils/useOnlineStatus';
 import UserContext from '../Utils/UsrContext';
-
+import { Selector, useSelector } from 'react-redux';
 
 export const ImgComponent = ({ item, itemname }) => {
   return (
@@ -23,8 +24,12 @@ export const Title = () => {
 
 export const NavComponent = () => {
 
-  const {loggedInUser}=useContext(UserContext)
+  //subscribing the store using selector
+  const cartItems = useSelector((store) => store.cart.items);
 
+
+  const { loggedInUser } = useContext(UserContext)
+  console.log(cartItems);
   const onlineStatus = useOnlineStatus();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
@@ -39,7 +44,8 @@ export const NavComponent = () => {
           <li className='px-4'><Link to={"/"} >Home </Link> </li>
           <li className='px-4'><Link to={"/about"}>About Us</Link></li>
           <li className='px-4'><Link to={"/contact"}>Contact Us</Link></li>
-          <li className='px-4'> Cart </li>
+          <li className='px-4'>
+            <Link to={"/cart"}>cart {cartItems.length} item</Link> </li>
           <li className='w-12 px-4'> <img src={isLoggedIn ? loggedIn : loggedOut} className={isLoggedIn ? "loggedIn" : "loggedOut"}
             alt={isLoggedIn ? "loggedIn" : "loggedOut"}
             onClick={() => { setIsLoggedIn(!isLoggedIn); }} />
