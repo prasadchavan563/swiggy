@@ -1,14 +1,12 @@
+import {  useSelector } from 'react-redux';
 import logo from '../../assets/images/logo-main.png';
-import cart from '../../assets/images/cart.png';
 import loggedIn from '../../assets/images/loggedin.png';
 import loggedOut from '../../assets/images/loggedout.png';
-import home from '../../assets/images/home.png';
-import Cart from './Cart';
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../Utils/useOnlineStatus';
 import UserContext from '../Utils/UsrContext';
-import { Selector, useSelector } from 'react-redux';
+
 
 export const ImgComponent = ({ item, itemname }) => {
   return (

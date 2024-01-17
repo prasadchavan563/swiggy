@@ -38,7 +38,7 @@ const Body = () => {
       console.log("seconddata",json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards?.map((data)=>data?.card?.info));
       console.log("thirdddata",json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card?.itemCards?.map((data)=>data?.card?.info));
       console.log(res_data,"res_data");
-      const restaurantsData = res_data.data.cards[2].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
+      const restaurantsData = res_data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants.map(restaurant => restaurant.info);
       setAllRestaurants(restaurantsData);
       setFilteredRestaurants(restaurantsData);
       console.log(allRestaurants,"filteredRestaurants");
@@ -104,6 +104,7 @@ const Body = () => {
       <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.id} to={"/restaurant/"+restaurant.id}>
+          {console.log(restaurant,"rest")}
           {restaurant.avgRating>4.4 ? <EnhancedRestaurantCard {...restaurant}/> : <RestaurantCard {...restaurant} />}</Link>
         ))}
       </div>
