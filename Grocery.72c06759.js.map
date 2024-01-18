@@ -1,0 +1,1 @@
+{"mappings":"6YAAA,IAAAA,EAAAC,EAAA,S,IAKAC,EALc,KAEN,EAAAF,EAAAG,KAAC,M,SAAG,iB","sources":["src/components/Grocery.js"],"sourcesContent":["const Grocery=()=>{\r\n    return(\r\n        <h1>Grocery Store</h1>\r\n    )\r\n}\r\nexport default Grocery;"],"names":["$ayMG0","parcelRequire","$f944ff4f702799b8$export$2e2bcd8739ae039","jsx"],"version":3,"file":"Grocery.72c06759.js.map"}

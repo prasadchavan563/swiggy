@@ -1,0 +1,2 @@
+var e=("undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:"undefined"!=typeof global?global:{}).parcelRequireddfe;e.register("loR3J",(function(o,r){var l,n,d,f,i;l=o.exports,Object.defineProperty(l,"__esModule",{value:!0,configurable:!0}),n=o.exports,d="default",f=()=>a,Object.defineProperty(n,d,{get:f,set:i,enumerable:!0,configurable:!0});var t=e("ayMG0");var a=()=>(0,t.jsx)("h1",{children:"Grocery Store"})}));
+//# sourceMappingURL=Grocery.aa92eace.js.map
