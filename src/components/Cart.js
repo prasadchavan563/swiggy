@@ -4,13 +4,14 @@ import { clearItem } from "../Utils/cartSlice";
 
 const Cart = () => {
     const cartItems = useSelector((store) => store.cart.items);//subscribing the selected portion of the store
-    console.log("cartItems", cartItems);
+    console.log("!!!!!!!!!!!cartItems!!!!!!!!!!!", cartItems);
 
     const dispatch = useDispatch()
 
     const handleClearItem= () =>{
         dispatch(clearItem())
     }
+    // console.console.log("!!!!!!!!!!!!!!",cartItems);
 
     return (
         <div className="text-center">

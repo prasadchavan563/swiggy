@@ -77,3 +77,12 @@ Early return -> not render
 
 
 How to avoid rendering components ? optional chaining or  
+
+
+
+
+Redux Toolkit
+
+-When you click on cart then dispatches an action , calls the reducer function and this function internally modifies the cart(slice in store)
+-we can't directly add data to slice of a redux store
+-when data in store is change then automatically component update the data using selector 
