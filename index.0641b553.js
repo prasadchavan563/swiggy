@@ -58418,11 +58418,12 @@ var _s = $RefreshSig$();
 const Cart = ()=>{
     _s();
     const cartItems = (0, _reactRedux.useSelector)((store)=>store.cart.items); //subscribing the selected portion of the store
-    console.log("cartItems", cartItems);
+    console.log("!!!!!!!!!!!cartItems!!!!!!!!!!!", cartItems);
     const dispatch = (0, _reactRedux.useDispatch)();
     const handleClearItem = ()=>{
         dispatch((0, _cartSlice.clearItem)());
     };
+    // console.console.log("!!!!!!!!!!!!!!",cartItems);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "text-center",
         children: [
@@ -58433,12 +58434,12 @@ const Cart = ()=>{
                     children: "Clear"
                 }, void 0, false, {
                     fileName: "src/components/Cart.js",
-                    lineNumber: 18,
+                    lineNumber: 19,
                     columnNumber: 13
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Cart.js",
-                lineNumber: 17,
+                lineNumber: 18,
                 columnNumber: 9
             }, undefined),
             cartItems.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -58452,7 +58453,7 @@ const Cart = ()=>{
                                     children: item.name
                                 }, void 0, false, {
                                     fileName: "src/components/Cart.js",
-                                    lineNumber: 23,
+                                    lineNumber: 24,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -58460,7 +58461,7 @@ const Cart = ()=>{
                                     children: item.price ? "₹ " + item.price / 100 : "₹ " + item.defaultPrice / 100
                                 }, void 0, false, {
                                     fileName: "src/components/Cart.js",
-                                    lineNumber: 24,
+                                    lineNumber: 25,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -58468,13 +58469,13 @@ const Cart = ()=>{
                                     children: item.description
                                 }, void 0, false, {
                                     fileName: "src/components/Cart.js",
-                                    lineNumber: 27,
+                                    lineNumber: 28,
                                     columnNumber: 25
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Cart.js",
-                            lineNumber: 22,
+                            lineNumber: 23,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -58484,24 +58485,24 @@ const Cart = ()=>{
                                 className: "p-4 my-10 rounded-2xl"
                             }, void 0, false, {
                                 fileName: "src/components/Cart.js",
-                                lineNumber: 30,
+                                lineNumber: 31,
                                 columnNumber: 25
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/Cart.js",
-                            lineNumber: 29,
+                            lineNumber: 30,
                             columnNumber: 21
                         }, undefined)
                     ]
                 }, index, true, {
                     fileName: "src/components/Cart.js",
-                    lineNumber: 21,
+                    lineNumber: 22,
                     columnNumber: 17
                 }, undefined))
         ]
     }, void 0, true, {
         fileName: "src/components/Cart.js",
-        lineNumber: 16,
+        lineNumber: 17,
         columnNumber: 9
     }, undefined);
 };
